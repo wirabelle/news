@@ -10,3 +10,20 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+import Vue from 'vue';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+import NewsIndex from './js/components/news/index'
+import NewsShow from './js/components/news/show'
+
+Vue.use(VueAxios, axios)
+
+/**
+* Create a fresh Vue Application instance
+*/
+new Vue({
+  el: '#app',
+  components: {NewsIndex, NewsShow}
+});

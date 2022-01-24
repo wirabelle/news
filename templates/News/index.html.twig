@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="text-center">
+    <h3>News</h3>
+
+    <news-index endpoint="{{ path('api_news_get_collection', {'_format' : 'json'}) }}" show-url="{{ path('show', {'id' : '__id__'}) }}"> 
+
+    </news-index>
+</div>
+
+{% endblock %}

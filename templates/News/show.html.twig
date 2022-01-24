@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="text-center">
+    <h3>News details</h3>
+
+    <div class="jumbotron text-center">
+        <news-show endpoint="{{ path('api_news_get_item', {'id': id, '_format' : 'json'}) }}"></news-show>
+    </div>
+</div>
+
+{% endblock %}
