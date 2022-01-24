@@ -1,7 +1,7 @@
 parameters:
   app.feeds:
     lemonde:
-      type: xml
-      url: https://www.lemonde.fr/rss/
+      type: rss
       options:
+        url: https://www.lemonde.fr/rss/
         path: une.xml
