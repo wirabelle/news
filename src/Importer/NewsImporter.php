@@ -42,15 +42,23 @@ class NewsImporter implements LoggerAwareInterface
     /**
      * Import news from config.
      */
-    public function import(): void
+    public function import(?string $feedName): void
     {
-        foreach ($this->feeds as $feed) {
+        foreach ($this->feeds as $feed => $feedConfig) {
+            // Check specific feed
+            if (
+                null !== $feedName
+                && $feed !== $feedName
+            ) {
+                continue;
+            }
+
             // Create importer
-            $importer = $this->newsImporterFactory->create($feed['type'], $feed['options']);
+            $importer = $this->newsImporterFactory->create($feedConfig['type'], $feedConfig['options']);
 
             // Skip if not exists
             if (!$importer instanceof NewsImporterInterface) {
-                $this->logger->error("Unable to create new importer of type '{$feed['type']}'");
+                $this->logger->error("Unable to create new importer of type '{$feedConfig['type']}'");
                 continue;
             }
 

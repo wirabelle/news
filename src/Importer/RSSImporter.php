@@ -4,6 +4,7 @@ namespace App\Importer;
 
 use GuzzleHttp\Client;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RSSImporter implements NewsImporterInterface
 {
@@ -22,7 +23,7 @@ class RSSImporter implements NewsImporterInterface
 
     public function __construct(array $options)
     {
-        $this->options = $options;
+        $this->options = $this->resolveOptions($options);
         $this->client = new Client([
             'base_uri' => $options['url'],
         ]);
@@ -74,5 +75,17 @@ class RSSImporter implements NewsImporterInterface
         }
 
         return $data;
+    }
+
+    /**
+     * Resoslve Importer options.
+     */
+    protected function resolveOptions(array $options): array
+    {
+        return (new OptionsResolver())
+            ->setRequired(['url', 'path'])
+            ->setAllowedTypes('url', 'string')
+            ->setAllowedTypes('path', 'string')
+            ->resolve($options);
     }
 }

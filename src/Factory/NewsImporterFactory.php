@@ -14,7 +14,6 @@ class NewsImporterFactory
     {
         switch ($type) {
             case 'rss':
-                // TODO Option resolver
                 return new RSSImporter($options);
         }
 
