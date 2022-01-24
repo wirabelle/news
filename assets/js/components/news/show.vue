@@ -1,10 +1,12 @@
 <template>
-    <div>
-        <h2>{{ item.title }}</h2>
-        <p>
-            {{ item.description }}
-        </p>
+    <div class="card w-100" style="width: 18rem;">
+        <div class="card-body">
+            <h2 class="card-title">{{ item.title }}</h2>
+            <img v-bind:src="item.image">
+            <p class="card-text">{{ item.description }}</p>
+        </div>
     </div>
+
 </template>
 
 <script>

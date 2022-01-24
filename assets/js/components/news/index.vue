@@ -1,10 +1,21 @@
 <template>
-    <ul>
-        <li v-if="loading">Chargement...</li>
-        <li v-for="item in items">
-            <a v-bind:href="item.link">{{ item.title }}</a>
-        </li>
-    </ul>
+    <div class="list-group">
+        <div v-if="loading">Chargement...</div>
+        <a v-for="item in items"v-bind:href="item.link" aria-current="true"  class="news list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-3">
+                    <img class="news-img" v-bind:src="item.image"/>
+                </div>
+                <div class="col-9">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ item.title }}</h5>
+                        <small>{{ item.publishedAt }}</small>
+                    </div>
+                    <p class="mb-1">{{ item.description }}</p>
+                </div>
+            </div>
+        </a>
+    </div>
 </template>
 
 <script>

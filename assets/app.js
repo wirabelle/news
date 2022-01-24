@@ -7,18 +7,19 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // start the Stimulus application
 import './bootstrap';
 
 import Vue from 'vue';
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
-import NewsIndex from './js/components/news/index'
-import NewsShow from './js/components/news/show'
+import NewsIndex from './js/components/news/index';
+import NewsShow from './js/components/news/show';
 
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
 
 /**
 * Create a fresh Vue Application instance
