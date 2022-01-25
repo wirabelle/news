@@ -7,6 +7,7 @@ use App\Factory\NewsImporterFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NewsImporter implements LoggerAwareInterface
 {
@@ -45,6 +46,8 @@ class NewsImporter implements LoggerAwareInterface
     public function import(?string $feedName): void
     {
         foreach ($this->feeds as $feed => $feedConfig) {
+            $this->resolveOptions($feedConfig);
+
             // Check specific feed
             if (
                 null !== $feedName
@@ -81,5 +84,17 @@ class NewsImporter implements LoggerAwareInterface
         }
 
         $this->entityManager->flush();
+    }
+
+    /**
+     * Resoslve Importer options.
+     */
+    protected function resolveOptions(array $options): array
+    {
+        return (new OptionsResolver())
+            ->setRequired(['type', 'options'])
+            ->setAllowedTypes('type', 'string')
+            ->setAllowedTypes('options', 'array')
+            ->resolve($options);
     }
 }

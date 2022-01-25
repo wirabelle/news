@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class NewsController extends AbstractController
@@ -10,7 +11,7 @@ class NewsController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index()
+    public function index(): Response
     {
         return $this->render('News/index.html.twig');
     }
@@ -18,7 +19,7 @@ class NewsController extends AbstractController
     /**
      * @Route("/{id}", name="show")
      */
-    public function show($id)
+    public function show($id): Response
     {
         return $this->render('News/show.html.twig', ['id' => $id]);
     }

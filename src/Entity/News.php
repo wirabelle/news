@@ -7,7 +7,7 @@ use App\Repository\NewsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=NewsRepository::class)
+ * @ORM\Entity()
  */
 #[ApiResource(
     collectionOperations: ['get'],
