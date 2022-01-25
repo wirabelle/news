@@ -1,0 +1,1 @@
+postdeploy: php bin/console --no-interaction doctrine:migrations:migrate
